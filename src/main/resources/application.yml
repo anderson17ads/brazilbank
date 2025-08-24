@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: brazilbank
+
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}

@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'br.com.anderson17ads.brazilbank'
+version = '0.0.1-SNAPSHOT'
+description = 'Brazil Bank'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Web (API REST)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Data JPA (ORM)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Banco de dados PostgreSQL
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Validações (Bean Validation - @Valid, @NotNull, etc.)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Lombok para reduzir boilerplate
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Testes
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
