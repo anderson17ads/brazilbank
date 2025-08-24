@@ -1,9 +1,7 @@
-package br.com.anderson17ads.brazilbank;
+package br.com.anderson17ads.brazilbank.adapters.inbound.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.constraints.Null;
 
 @RequestMapping("/user")
 @RestController
