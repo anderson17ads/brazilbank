@@ -1,7 +1,5 @@
 package br.com.anderson17ads.brazilbank.domain.account;
 
-import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountRequest;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 

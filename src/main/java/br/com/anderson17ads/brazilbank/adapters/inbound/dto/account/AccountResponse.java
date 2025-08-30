@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto;
+package br.com.anderson17ads.brazilbank.adapters.inbound.dto.account;
 
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountType;

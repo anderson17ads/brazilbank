@@ -1,7 +1,8 @@
 package br.com.anderson17ads.brazilbank.adapters.inbound.controllers;
 
-import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountRequest;
-import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountResponse;
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountRequest;
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountResponse;
+import br.com.anderson17ads.brazilbank.adapters.inbound.paths.ApiPaths;
 import br.com.anderson17ads.brazilbank.application.service.AccountService;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@RequestMapping("/account")
+@RequestMapping(ApiPaths.ACCOUNT)
 @RestController
 public class AccountController {
     private final AccountService accountService;
@@ -21,7 +22,7 @@ public class AccountController {
     @PostMapping
     public ResponseEntity<AccountResponse> create(@RequestBody AccountRequest request) {
         Account created = accountService.create(request);
-        URI location = URI.create("/account/" + created.getId());
+        URI location = URI.create(String.format("%s/%s", ApiPaths.ACCOUNT, created.getId()));
 
         return ResponseEntity
             .created(location)

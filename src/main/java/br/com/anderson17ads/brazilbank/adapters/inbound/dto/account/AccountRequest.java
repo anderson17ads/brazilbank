@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto;
+package br.com.anderson17ads.brazilbank.adapters.inbound.dto.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

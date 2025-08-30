@@ -1,6 +1,6 @@
 package br.com.anderson17ads.brazilbank.application.service;
 
-import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountRequest;
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountRequest;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountRepository;
 import br.com.anderson17ads.brazilbank.domain.account.AccountType;
