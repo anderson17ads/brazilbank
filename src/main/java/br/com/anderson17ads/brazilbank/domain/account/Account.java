@@ -13,13 +13,11 @@ public class Account {
     public Account() {}
 
     public Account(
-        UUID id,
         String number,
         BigDecimal balance,
         UUID customerId,
         AccountType type
     ) {
-        this.id = id;
         this.number = number;
         this.balance = balance;
         this.customerId = customerId;

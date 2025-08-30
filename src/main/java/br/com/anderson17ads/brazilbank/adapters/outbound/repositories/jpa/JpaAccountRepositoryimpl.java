@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.adapters.outbound.repositories;
+package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.jpa;
 
 import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaAccountEntity;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
@@ -9,19 +9,18 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class AccountRepositoryImpl implements AccountRepository {
+public class JpaAccountRepositoryimpl implements AccountRepository {
     private final JpaAccountRepository jpaAccountRepository;
 
-    public AccountRepositoryImpl(JpaAccountRepository jpaAccountRepository) {
+    public JpaAccountRepositoryimpl(JpaAccountRepository jpaAccountRepository) {
         this.jpaAccountRepository = jpaAccountRepository;
     }
 
     @Override
     public Account save(Account account) {
         JpaAccountEntity entity = new JpaAccountEntity(account);
-        this.jpaAccountRepository.save(entity);
+        jpaAccountRepository.save(entity);
         return new Account(
-            entity.getId(),
             entity.getNumber(),
             entity.getBalance(),
             entity.getCustomerId(),
@@ -31,9 +30,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account findById(UUID id) {
-        Optional<JpaAccountEntity> jpaAccountEntity = this.jpaAccountRepository.findById(id);
+        Optional<JpaAccountEntity> jpaAccountEntity = jpaAccountRepository.findById(id);
         return jpaAccountEntity.map(entity -> new Account(
-            entity.getId(),
             entity.getNumber(),
             entity.getBalance(),
             entity.getCustomerId(),
@@ -43,11 +41,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public List<Account> findAll() {
-        return this.jpaAccountRepository
+        return jpaAccountRepository
             .findAll()
             .stream()
             .map(entity -> new Account(
-                entity.getId(),
                 entity.getNumber(),
                 entity.getBalance(),
                 entity.getCustomerId(),
@@ -58,6 +55,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void deleteById(UUID id) {
-        this.jpaAccountRepository.deleteById(id);
+        jpaAccountRepository.deleteById(id);
     }
 }
