@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class JpaAccountRepositoryimpl implements AccountRepository {
+public class JpaAccountRepositoryAdapter implements AccountRepository {
     private final JpaAccountRepository jpaAccountRepository;
 
-    public JpaAccountRepositoryimpl(JpaAccountRepository jpaAccountRepository) {
+    public JpaAccountRepositoryAdapter(JpaAccountRepository jpaAccountRepository) {
         this.jpaAccountRepository = jpaAccountRepository;
     }
 
@@ -21,6 +21,7 @@ public class JpaAccountRepositoryimpl implements AccountRepository {
         JpaAccountEntity entity = new JpaAccountEntity(account);
         jpaAccountRepository.save(entity);
         return new Account(
+            entity.getId(),
             entity.getNumber(),
             entity.getBalance(),
             entity.getCustomerId(),
@@ -32,6 +33,7 @@ public class JpaAccountRepositoryimpl implements AccountRepository {
     public Account findById(UUID id) {
         Optional<JpaAccountEntity> jpaAccountEntity = jpaAccountRepository.findById(id);
         return jpaAccountEntity.map(entity -> new Account(
+            entity.getId(),
             entity.getNumber(),
             entity.getBalance(),
             entity.getCustomerId(),
@@ -45,6 +47,7 @@ public class JpaAccountRepositoryimpl implements AccountRepository {
             .findAll()
             .stream()
             .map(entity -> new Account(
+                entity.getId(),
                 entity.getNumber(),
                 entity.getBalance(),
                 entity.getCustomerId(),

@@ -1,5 +1,7 @@
 package br.com.anderson17ads.brazilbank.domain.account;
 
+import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountRequest;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -13,6 +15,20 @@ public class Account {
     public Account() {}
 
     public Account(
+        UUID id,
+        String number,
+        BigDecimal balance,
+        UUID customerId,
+        AccountType type
+    ) {
+        this.id = id;
+        this.number = number;
+        this.balance = balance;
+        this.customerId = customerId;
+        this.type = type;
+    }
+
+    public Account(
         String number,
         BigDecimal balance,
         UUID customerId,
@@ -23,7 +39,6 @@ public class Account {
         this.customerId = customerId;
         this.type = type;
     }
-
     // Id
     public UUID getId() {
         return id;

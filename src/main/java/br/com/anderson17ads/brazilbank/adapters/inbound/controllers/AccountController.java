@@ -1,8 +1,13 @@
 package br.com.anderson17ads.brazilbank.adapters.inbound.controllers;
 
+import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountRequest;
+import br.com.anderson17ads.brazilbank.adapters.inbound.controllers.dto.AccountResponse;
 import br.com.anderson17ads.brazilbank.application.service.AccountService;
-import com.fasterxml.jackson.databind.JsonNode;
+import br.com.anderson17ads.brazilbank.domain.account.Account;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RequestMapping("/account")
 @RestController
@@ -14,7 +19,12 @@ public class AccountController {
     }
 
     @PostMapping
-    public String create(@RequestBody JsonNode body) {
-        return accountService.create(body);
+    public ResponseEntity<AccountResponse> create(@RequestBody AccountRequest request) {
+        Account created = accountService.create(request);
+        URI location = URI.create("/account/" + created.getId());
+
+        return ResponseEntity
+            .created(location)
+            .body(new AccountResponse(created));
     }
 }
