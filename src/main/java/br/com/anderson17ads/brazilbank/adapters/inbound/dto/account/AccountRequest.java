@@ -10,16 +10,16 @@ import java.util.UUID;
 
 @Data
 public class AccountRequest {
-    @NotBlank
+    @NotBlank(message = "Number cannot be null")
     private String number;
 
-    @NotNull
+    @NotNull(message = "Balance cannot be null")
     private BigDecimal balance;
 
-    @NotBlank
+    @NotNull(message = "CustumerId cannot be null")
     @JsonProperty("customer_id")
     private UUID customerId;
 
-    @NotBlank
+    @NotBlank(message = "Type cannot be null")
     private String type;
 }
