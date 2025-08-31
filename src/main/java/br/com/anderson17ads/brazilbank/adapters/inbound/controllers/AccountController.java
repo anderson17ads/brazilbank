@@ -8,6 +8,7 @@ import br.com.anderson17ads.brazilbank.domain.account.Account;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RequestMapping(ApiPaths.ACCOUNT)
@@ -20,7 +21,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountResponse> create(@RequestBody AccountRequest request) {
+    public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRequest request) {
         Account created = accountService.create(request);
         URI location = URI.create(String.format("%s/%s", ApiPaths.ACCOUNT, created.getId()));
 
