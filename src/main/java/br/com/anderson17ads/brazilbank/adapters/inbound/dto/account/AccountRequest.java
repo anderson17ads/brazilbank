@@ -10,9 +10,6 @@ import java.util.UUID;
 
 @Data
 public class AccountRequest {
-    @NotBlank(message = "Number cannot be null")
-    private String number;
-
     @NotNull(message = "Balance cannot be null")
     private BigDecimal balance;
 
