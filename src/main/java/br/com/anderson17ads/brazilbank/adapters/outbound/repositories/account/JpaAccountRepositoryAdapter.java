@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.jpa;
+package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.account;
 
 import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaAccountEntity;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
@@ -21,11 +21,11 @@ public class JpaAccountRepositoryAdapter implements AccountRepository {
         JpaAccountEntity entity = new JpaAccountEntity(account);
         jpaAccountRepository.save(entity);
         return new Account(
-            entity.getId(),
-            entity.getNumber(),
-            entity.getBalance(),
-            entity.getCustomerId(),
-            entity.getType()
+                entity.getId(),
+                entity.getNumber(),
+                entity.getBalance(),
+                entity.getCustomerId(),
+                entity.getType()
         );
     }
 
@@ -33,27 +33,27 @@ public class JpaAccountRepositoryAdapter implements AccountRepository {
     public Account findById(UUID id) {
         Optional<JpaAccountEntity> jpaAccountEntity = jpaAccountRepository.findById(id);
         return jpaAccountEntity.map(entity -> new Account(
-            entity.getId(),
-            entity.getNumber(),
-            entity.getBalance(),
-            entity.getCustomerId(),
-            entity.getType()
+                entity.getId(),
+                entity.getNumber(),
+                entity.getBalance(),
+                entity.getCustomerId(),
+                entity.getType()
         )).orElse(null);
     }
 
     @Override
     public List<Account> findAll() {
         return jpaAccountRepository
-            .findAll()
-            .stream()
-            .map(entity -> new Account(
-                entity.getId(),
-                entity.getNumber(),
-                entity.getBalance(),
-                entity.getCustomerId(),
-                entity.getType()
-            ))
-            .collect(Collectors.toList());
+                .findAll()
+                .stream()
+                .map(entity -> new Account(
+                        entity.getId(),
+                        entity.getNumber(),
+                        entity.getBalance(),
+                        entity.getCustomerId(),
+                        entity.getType()
+                ))
+                .collect(Collectors.toList());
     }
 
     @Override

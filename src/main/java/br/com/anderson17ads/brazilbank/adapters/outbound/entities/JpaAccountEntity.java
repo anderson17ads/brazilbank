@@ -16,8 +16,6 @@ import java.util.UUID;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class JpaAccountEntity {
     @Id
     @GeneratedValue
