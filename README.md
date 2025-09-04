@@ -62,7 +62,7 @@ POST /customer
 Content-Type: application/json
 
 {
-  "name": "Anderson de Souza,
+  "name": "Anderson de Souza",
   "email": "anderson17ads@hotmail.com",
   "document": "123456",
   "phone": "11994048640",
