@@ -83,5 +83,7 @@ Content-Type: application/json
 
 ---
 
-## 🧑‍💻 Author
-Developed by **Anderson Souza** – Senior PHP & Java Developer  
+## 🧑‍💻 Autor
+Desenvolvido por **Anderson Souza** – Desenvolvedor Sênior em PHP & Java  
+[LinkedIn: Anderson de Souza](https://www.linkedin.com/in/anderson-de-souza-9a6a2339/)
+ 
