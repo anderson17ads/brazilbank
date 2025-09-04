@@ -3,7 +3,7 @@ package br.com.anderson17ads.brazilbank.adapters.inbound.controllers;
 import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountRequest;
 import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountResponse;
 import br.com.anderson17ads.brazilbank.adapters.inbound.paths.ApiPaths;
-import br.com.anderson17ads.brazilbank.application.usecase.account.CreateAccountUseCase;
+import br.com.anderson17ads.brazilbank.application.usecase.account.create.CreateAccountUseCase;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountType;
 import br.com.anderson17ads.brazilbank.application.command.account.CreateAccountCommand;
@@ -35,7 +35,7 @@ public class AccountController {
         URI location = URI.create(String.format("%s/%s", ApiPaths.ACCOUNT, created.getId()));
 
         return ResponseEntity
-            .created(location)
-            .body(new AccountResponse(created));
+                .created(location)
+                .body(new AccountResponse(created));
     }
 }

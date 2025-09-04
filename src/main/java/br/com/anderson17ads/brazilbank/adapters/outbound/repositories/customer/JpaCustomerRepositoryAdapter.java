@@ -1,11 +1,9 @@
 package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.customer;
 
 import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaCustomerEntity;
-import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.application.usecase.account;
+package br.com.anderson17ads.brazilbank.application.usecase.account.create;
 
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountFactory;
@@ -11,10 +11,14 @@ public class CreateAccountUseCaseAdapter implements CreateAccountUseCase {
     private final AccountFactory accountFactory;
     private final AccountNumberPolicy accountNumberPolicy;
 
-    public CreateAccountUseCaseAdapter(AccountRepository accountRepository) {
+    public CreateAccountUseCaseAdapter(
+            AccountRepository accountRepository,
+            AccountFactory accountFactory,
+            AccountNumberPolicy accountNumberPolicy
+    ) {
         this.accountRepository = accountRepository;
-        this.accountFactory = new AccountFactory();
-        this.accountNumberPolicy = new AccountNumberPolicy();
+        this.accountFactory = accountFactory;
+        this.accountNumberPolicy = accountNumberPolicy;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class CreateAccountCommand {
-    private final BigDecimal  balance;
+    private final BigDecimal balance;
     private final UUID customerId;
     private final AccountType type;
 
@@ -20,7 +20,7 @@ public class CreateAccountCommand {
         return balance;
     }
 
-    public UUID  getCustomerId() {
+    public UUID getCustomerId() {
         return customerId;
     }
 

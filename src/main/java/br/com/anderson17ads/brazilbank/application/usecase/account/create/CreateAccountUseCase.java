@@ -1,4 +1,4 @@
-package br.com.anderson17ads.brazilbank.application.usecase.account;
+package br.com.anderson17ads.brazilbank.application.usecase.account.create;
 
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.application.command.account.CreateAccountCommand;

@@ -1,25 +1,44 @@
 package br.com.anderson17ads.brazilbank.adapters.inbound.controllers;
 
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.account.AccountResponse;
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer.CustomerRequest;
+import br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer.CustomerResponse;
+import br.com.anderson17ads.brazilbank.adapters.inbound.paths.ApiPaths;
+import br.com.anderson17ads.brazilbank.application.command.customer.CreateCustomerCommand;
+import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCase;
+import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/customer")
+import javax.validation.Valid;
+import java.net.URI;
+
+@RequestMapping(ApiPaths.CUSTOMER)
 @RestController
 public class CustomerController {
-    @GetMapping
-    public String list(@RequestParam(value = "filter", required = false) String filter) {
-        return (filter == null)
-            ? "Customer List without param filter"
-            : "Customer List with param filter " + filter;
-    }
+    private final CreateCustomerUseCase createCustomerUseCase;
 
-    @GetMapping("/{id}")
-    public String detail(@PathVariable("id") String id) {
-        return "Customer detail " + id;
+    public CustomerController(CreateCustomerUseCase createCustomerUseCase) {
+        this.createCustomerUseCase = createCustomerUseCase;
     }
 
     @PostMapping
-    public String create(@RequestBody JsonNode body) {
-        return "Nome " + body.get("name").asText();
+    public ResponseEntity<CustomerResponse> create(@Valid @RequestBody CustomerRequest request) {
+        CreateCustomerCommand command = new CreateCustomerCommand(
+                request.getName(),
+                request.getEmail(),
+                request.getDocument(),
+                request.getPhone(),
+                request.getBirthDate()
+        );
+
+        Customer created = createCustomerUseCase.execute(command);
+
+        URI location = URI.create(String.format("%s/%s", ApiPaths.CUSTOMER, created.getId()));
+
+        return ResponseEntity
+                .created(location)
+                .body(new CustomerResponse(created));
     }
 }
