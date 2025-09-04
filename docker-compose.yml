@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  brazilbank-postgres:
+    image: postgres:14
+    container_name: brazilbank-postgres
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - brazilbank_data:/var/lib/postgresql/data
+
+volumes:
+  brazilbank_data:

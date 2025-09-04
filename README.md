@@ -33,30 +33,13 @@ git clone https://github.com/your-username/brazilbank.git
 cd brazilbank
 ```
 
-### 2. Configure PostgreSQL
-Make sure you have PostgreSQL running. Create a database:
+### 2. Run PostgreSQL with Docker
+The database is managed via **Docker Compose**.  
+All configuration values are stored in the `.env` file at the project root.
 
-```sql
-CREATE DATABASE brazilbank;
-```
-
-### 3. Configure `application-dev.yml`
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/brazilbank
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+Start the container:
+```bash
+docker-compose up -d
 ```
 
 ---
@@ -73,27 +56,29 @@ Or using IntelliJ, just run the `BrazilbankApplication` class.
 
 ## 📌 Example Endpoints
 
-### Create an account
+### Create a customer
 ```http
-POST /accounts
+POST /customer
 Content-Type: application/json
 
 {
-  "number": "12345",
-  "balance": 500.00,
-  "customerId": "550e8400-e29b-41d4-a716-446655440000",
-  "type": "CHECKING"
+  "name": "Anderson de Souza,
+  "email": "anderson17ads@hotmail.com",
+  "document": "123456",
+  "phone": "11994048640",
+  "birth_date": "1988-11-22"
 }
 ```
-
-### Get all accounts
+### Create an account
 ```http
-GET /accounts
-```
+POST /account
+Content-Type: application/json
 
-### Get account by ID
-```http
-GET /accounts/{id}
+{
+  "balance": 500.00,
+  "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+  "type": "CHECKING"
+}
 ```
 
 ---
