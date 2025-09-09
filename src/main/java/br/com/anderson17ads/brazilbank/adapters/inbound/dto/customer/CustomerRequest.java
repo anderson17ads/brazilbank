@@ -1,5 +1,7 @@
 package br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -21,5 +23,6 @@ public class CustomerRequest {
     private String phone;
 
     @NotNull(message = "Birth Date cannot be null")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
 }

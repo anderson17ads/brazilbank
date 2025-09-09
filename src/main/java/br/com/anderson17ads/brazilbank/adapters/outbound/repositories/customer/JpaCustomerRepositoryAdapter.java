@@ -44,6 +44,11 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
     }
 
     @Override
+    public boolean existsById(UUID id) {
+        return jpaCustomerRepository.existsById(id);
+    }
+
+    @Override
     public List<Customer> findAll() {
         return jpaCustomerRepository
                 .findAll()

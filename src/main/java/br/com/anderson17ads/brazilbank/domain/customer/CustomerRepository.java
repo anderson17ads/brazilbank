@@ -6,6 +6,7 @@ import java.util.UUID;
 public interface CustomerRepository {
     Customer save(Customer customer);
     Customer findById(UUID id);
+    boolean existsById(UUID id);
     List<Customer> findAll();
     void deleteById(UUID id);
 }
