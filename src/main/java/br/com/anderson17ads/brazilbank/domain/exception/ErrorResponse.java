@@ -1,7 +1,6 @@
 package br.com.anderson17ads.brazilbank.domain.exception;
 
 import java.time.Instant;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
