@@ -60,4 +60,9 @@ public class JpaAccountRepositoryAdapter implements AccountRepository {
     public void deleteById(UUID id) {
         jpaAccountRepository.deleteById(id);
     }
+
+    @Override
+    public long countByCustomerId(UUID customerId) {
+        return jpaAccountRepository.countByCustomerId(customerId);
+    }
 }

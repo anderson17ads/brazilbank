@@ -8,4 +8,5 @@ public interface AccountRepository {
     Account findById(UUID id);
     List<Account> findAll();
     void deleteById(UUID id);
+    long countByCustomerId(UUID customerId);
 }
