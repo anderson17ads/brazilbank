@@ -4,6 +4,7 @@ import br.com.anderson17ads.brazilbank.application.usecase.customer.create.Creat
 import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCaseAdapter;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerFactory;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
+import br.com.anderson17ads.brazilbank.domain.customer.policy.CheckCustomerAlreadyExistsByEmailPolicy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,11 +13,13 @@ public class CustomerUseCaseConfig {
     @Bean
     public CreateCustomerUseCase createCustomerUseCase(
             CustomerRepository customerRepository,
-            CustomerFactory customerFactory
+            CustomerFactory customerFactory,
+            CheckCustomerAlreadyExistsByEmailPolicy checkCustomerAlreadyExistsByEmailPolicy
     ) {
         return new CreateCustomerUseCaseAdapter(
                 customerRepository,
-                customerFactory
+                customerFactory,
+                checkCustomerAlreadyExistsByEmailPolicy
         );
     }
 }

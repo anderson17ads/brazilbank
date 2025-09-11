@@ -2,19 +2,17 @@ package br.com.anderson17ads.brazilbank.domain.customer.policy;
 
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
 
-import java.util.UUID;
-
-public class CheckCustomerExistsPolicy {
+public class CheckCustomerAlreadyExistsByEmailPolicy {
     private final CustomerRepository customerRepository;
 
-    public CheckCustomerExistsPolicy(CustomerRepository customerRepository) {
+    public CheckCustomerAlreadyExistsByEmailPolicy(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public void validate(UUID customerId) {
-       if (!customerRepository.existsById(customerId)) {
+    public void validate(String email) {
+       if (customerRepository.existsByEmail(email)) {
            throw new IllegalStateException(
-                   String.format("Customer %s not exists!", customerId)
+                   String.format("Customer %s already exists!", email)
            );
        }
     }

@@ -6,7 +6,7 @@ import br.com.anderson17ads.brazilbank.domain.account.AccountFactory;
 import br.com.anderson17ads.brazilbank.domain.account.AccountRepository;
 import br.com.anderson17ads.brazilbank.domain.account.policy.AccountNumberPolicy;
 import br.com.anderson17ads.brazilbank.domain.account.policy.MaxAccountsPerCustomerPolicy;
-import br.com.anderson17ads.brazilbank.domain.customer.policy.CheckCustomerExistsPolicy;
+import br.com.anderson17ads.brazilbank.domain.customer.policy.CheckCustomerExistsByUuidPolicy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,14 +17,14 @@ public class AccountUseCaseConfig {
             AccountRepository accountRepository,
             AccountFactory accountFactory,
             AccountNumberPolicy accountNumberPolicy,
-            CheckCustomerExistsPolicy checkCustomerExistsPolicy,
+            CheckCustomerExistsByUuidPolicy checkCustomerExistsByUuidPolicy,
             MaxAccountsPerCustomerPolicy maxAccountsPerCustomerPolicy
     ) {
         return new CreateAccountUseCaseAdapter(
                 accountRepository,
                 accountFactory,
                 accountNumberPolicy,
-                checkCustomerExistsPolicy,
+                checkCustomerExistsByUuidPolicy,
                 maxAccountsPerCustomerPolicy
         );
     }

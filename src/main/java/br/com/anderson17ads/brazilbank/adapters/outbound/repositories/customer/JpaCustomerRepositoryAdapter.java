@@ -31,21 +31,44 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
     }
 
     @Override
-    public Customer findById(UUID id) {
+    public Optional<Customer> findById(UUID id) {
         Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findById(id);
         return jpaCustomerEntity.map(entity -> new Customer(
                 entity.getId(),
                 entity.getName(),
                 entity.getEmail(),
                 entity.getDocument(),
-                entity.getDocument(),
+                entity.getPhone(),
                 entity.getBirthDate()
-        )).orElse(null);
+        ));
+    }
+
+    @Override
+    public Optional<Customer> findByEmail(String email) {
+        Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findByEmail(email);
+
+        if (jpaCustomerEntity.isPresent()) {
+            return jpaCustomerEntity.map(entity -> new Customer(
+                    entity.getId(),
+                    entity.getName(),
+                    entity.getEmail(),
+                    entity.getDocument(),
+                    entity.getPhone(),
+                    entity.getBirthDate()
+            ));
+        }
+
+        return Optional.empty();
     }
 
     @Override
     public boolean existsById(UUID id) {
         return jpaCustomerRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return jpaCustomerRepository.existsByEmail(email);
     }
 
     @Override
