@@ -5,7 +5,7 @@ import br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer.CustomerRes
 import br.com.anderson17ads.brazilbank.adapters.inbound.mapper.CustomerMapper;
 import br.com.anderson17ads.brazilbank.adapters.inbound.paths.ApiPaths;
 import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCase;
-import br.com.anderson17ads.brazilbank.application.usecase.customer.list.ListCustomerUserCase;
+import br.com.anderson17ads.brazilbank.application.usecase.customer.list.ListCustomerUseCase;
 import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ import java.util.List;
 @RestController
 public class CustomerController {
     private final CreateCustomerUseCase createCustomerUseCase;
-    private final ListCustomerUserCase listCustomerUserCase;
+    private final ListCustomerUseCase listCustomerUseCase;
 
     public CustomerController(
             CreateCustomerUseCase createCustomerUseCase,
-            ListCustomerUserCase listCustomerUserCase
+            ListCustomerUseCase listCustomerUseCase
     ) {
         this.createCustomerUseCase = createCustomerUseCase;
-        this.listCustomerUserCase = listCustomerUserCase;
+        this.listCustomerUseCase = listCustomerUseCase;
     }
 
     @PostMapping
@@ -45,9 +45,9 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerResponse>> list() {
+    public ResponseEntity<List<CustomerResponse>> listAll() {
         List<CustomerResponse> response = CustomerMapper.toResponseList(
-                listCustomerUserCase.execute()
+                listCustomerUseCase.execute()
         );
 
         return ResponseEntity.ok(response);

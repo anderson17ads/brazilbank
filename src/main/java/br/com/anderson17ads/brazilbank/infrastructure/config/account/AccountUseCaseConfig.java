@@ -2,6 +2,8 @@ package br.com.anderson17ads.brazilbank.infrastructure.config.account;
 
 import br.com.anderson17ads.brazilbank.application.usecase.account.create.CreateAccountUseCase;
 import br.com.anderson17ads.brazilbank.application.usecase.account.create.CreateAccountUseCaseAdapter;
+import br.com.anderson17ads.brazilbank.application.usecase.account.list.ListAccountUseCase;
+import br.com.anderson17ads.brazilbank.application.usecase.account.list.ListAccountUseCaseAdapter;
 import br.com.anderson17ads.brazilbank.domain.account.AccountFactory;
 import br.com.anderson17ads.brazilbank.domain.account.AccountRepository;
 import br.com.anderson17ads.brazilbank.domain.account.policy.AccountNumberPolicy;
@@ -27,5 +29,12 @@ public class AccountUseCaseConfig {
                 checkCustomerExistsByUuidPolicy,
                 maxAccountsPerCustomerPolicy
         );
+    }
+
+    @Bean
+    public ListAccountUseCase listAccountUseCase(
+            AccountRepository accountRepository
+    ) {
+        return new ListAccountUseCaseAdapter(accountRepository);
     }
 }

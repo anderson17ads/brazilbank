@@ -5,7 +5,7 @@ import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
 
 import java.util.List;
 
-public class ListCustomerUseCaseAdapter implements ListCustomerUserCase {
+public class ListCustomerUseCaseAdapter implements ListCustomerUseCase {
     CustomerRepository customerRepository;
 
     public ListCustomerUseCaseAdapter(CustomerRepository customerRepository) {

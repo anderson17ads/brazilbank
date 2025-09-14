@@ -6,6 +6,9 @@ import br.com.anderson17ads.brazilbank.application.command.account.CreateAccount
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountType;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AccountMapper {
     public static AccountResponse toResponse(Account account) {
         if (account == null) {
@@ -20,6 +23,12 @@ public class AccountMapper {
         response.setType(account.getType());
 
         return response;
+    }
+
+    public static List<AccountResponse> toResponseList(List<Account> accounts) {
+        return accounts.stream()
+                .map(AccountMapper::toResponse)
+                .collect(Collectors.toList());
     }
 
     public static CreateAccountCommand toCommand(AccountRequest request) {

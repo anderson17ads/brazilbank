@@ -4,6 +4,6 @@ import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 
 import java.util.List;
 
-public interface ListCustomerUserCase {
+public interface ListCustomerUseCase {
     List<Customer> execute();
 }

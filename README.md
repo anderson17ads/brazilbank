@@ -69,23 +69,11 @@ Content-Type: application/json
   "birth_date": "1988-11-22"
 }
 ```
-### Create an account
-```http
-POST /accounts
-Content-Type: application/json
-
-{
-  "balance": 500.00,
-  "customer_id": "550e8400-e29b-41d4-a716-446655440000",
-  "type": "CHECKING"
-}
-```
 ### List all customers
 ```http
 GET /customers
 Content-Type: application/json
 ```
-
 **Response Example**
 ```json
 [
@@ -104,6 +92,41 @@ Content-Type: application/json
     "document": "654321",
     "phone": "11987654321",
     "birth_date": "1990-05-15"
+  }
+]
+```
+### Create an account
+```http
+POST /accounts
+Content-Type: application/json
+
+{
+  "balance": 500.00,
+  "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+  "type": "CHECKING"
+}
+```
+### List all accounts
+```http
+GET /accounts
+Content-Type: application/json
+```
+**Response Example**
+```json
+[
+  {
+    "id": "1475eb2d-2565-41a5-a289-2f03d2f6e256",
+    "number": "3332ba32-a",
+    "balance": 20.00,
+    "customerId": "c28ecd31-189f-4b51-ab55-eadf7c85e1d8",
+    "type": "CHECKING"
+  },
+  {
+    "id": "ac59e405-b53d-418e-ae0b-fb7a6102055f",
+    "number": "d3942fd2-1",
+    "balance": 20.00,
+    "customerId": "c28ecd31-189f-4b51-ab55-eadf7c85e1d8",
+    "type": "CHECKING"
   }
 ]
 ```
