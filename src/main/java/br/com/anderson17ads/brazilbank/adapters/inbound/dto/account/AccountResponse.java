@@ -14,12 +14,4 @@ public class AccountResponse {
     private BigDecimal balance;
     private UUID customerId;
     private AccountType type;
-
-    public AccountResponse(Account account) {
-        this.id = account.getId();
-        this.number = account.getNumber();
-        this.balance = account.getBalance();
-        this.customerId = account.getCustomerId();
-        this.type = account.getType();
-    }
 }

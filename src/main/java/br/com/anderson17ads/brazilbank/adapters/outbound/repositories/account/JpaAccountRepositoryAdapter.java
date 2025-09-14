@@ -1,6 +1,7 @@
 package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.account;
 
 import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaAccountEntity;
+import br.com.anderson17ads.brazilbank.adapters.outbound.mapper.AccountMapper;
 import br.com.anderson17ads.brazilbank.domain.account.Account;
 import br.com.anderson17ads.brazilbank.domain.account.AccountRepository;
 
@@ -20,25 +21,13 @@ public class JpaAccountRepositoryAdapter implements AccountRepository {
     public Account save(Account account) {
         JpaAccountEntity entity = new JpaAccountEntity(account);
         jpaAccountRepository.save(entity);
-        return new Account(
-                entity.getId(),
-                entity.getNumber(),
-                entity.getBalance(),
-                entity.getCustomerId(),
-                entity.getType()
-        );
+        return AccountMapper.toEntity(entity);
     }
 
     @Override
     public Account findById(UUID id) {
         Optional<JpaAccountEntity> jpaAccountEntity = jpaAccountRepository.findById(id);
-        return jpaAccountEntity.map(entity -> new Account(
-                entity.getId(),
-                entity.getNumber(),
-                entity.getBalance(),
-                entity.getCustomerId(),
-                entity.getType()
-        )).orElse(null);
+        return jpaAccountEntity.map(AccountMapper::toEntity).orElse(null);
     }
 
     @Override
@@ -46,13 +35,7 @@ public class JpaAccountRepositoryAdapter implements AccountRepository {
         return jpaAccountRepository
                 .findAll()
                 .stream()
-                .map(entity -> new Account(
-                        entity.getId(),
-                        entity.getNumber(),
-                        entity.getBalance(),
-                        entity.getCustomerId(),
-                        entity.getType()
-                ))
+                .map(AccountMapper::toEntity)
                 .collect(Collectors.toList());
     }
 

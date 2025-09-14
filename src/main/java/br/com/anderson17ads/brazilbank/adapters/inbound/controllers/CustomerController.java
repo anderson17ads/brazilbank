@@ -4,7 +4,6 @@ import br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer.CustomerReq
 import br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer.CustomerResponse;
 import br.com.anderson17ads.brazilbank.adapters.inbound.mapper.CustomerMapper;
 import br.com.anderson17ads.brazilbank.adapters.inbound.paths.ApiPaths;
-import br.com.anderson17ads.brazilbank.application.command.customer.CreateCustomerCommand;
 import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCase;
 import br.com.anderson17ads.brazilbank.application.usecase.customer.list.ListCustomerUserCase;
 import br.com.anderson17ads.brazilbank.domain.customer.Customer;

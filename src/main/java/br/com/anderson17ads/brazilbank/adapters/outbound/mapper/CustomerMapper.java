@@ -4,7 +4,7 @@ import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaCustomerEnt
 import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 
 public class CustomerMapper {
-    public static Customer toDomain(JpaCustomerEntity entity) {
+    public static Customer toEntity(JpaCustomerEntity entity) {
         return new Customer(
                 entity.getId(),
                 entity.getName(),

@@ -21,13 +21,13 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
     public Customer save(Customer customer) {
         JpaCustomerEntity jpaCustomerEntity = new JpaCustomerEntity(customer);
         jpaCustomerRepository.save(jpaCustomerEntity);
-        return CustomerMapper.toDomain(jpaCustomerEntity);
+        return CustomerMapper.toEntity(jpaCustomerEntity);
     }
 
     @Override
     public Optional<Customer> findById(UUID id) {
         Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findById(id);
-        return jpaCustomerEntity.map(CustomerMapper::toDomain);
+        return jpaCustomerEntity.map(CustomerMapper::toEntity);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
         Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findByEmail(email);
 
         if (jpaCustomerEntity.isPresent()) {
-            return jpaCustomerEntity.map(CustomerMapper::toDomain);
+            return jpaCustomerEntity.map(CustomerMapper::toEntity);
         }
 
         return Optional.empty();
@@ -56,7 +56,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
         return jpaCustomerRepository
                 .findAll()
                 .stream()
-                .map(CustomerMapper::toDomain)
+                .map(CustomerMapper::toEntity)
                 .collect(Collectors.toList());
     }
 
