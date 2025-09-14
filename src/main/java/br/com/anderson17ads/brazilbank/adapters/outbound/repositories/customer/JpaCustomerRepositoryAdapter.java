@@ -1,6 +1,7 @@
 package br.com.anderson17ads.brazilbank.adapters.outbound.repositories.customer;
 
 import br.com.anderson17ads.brazilbank.adapters.outbound.entities.JpaCustomerEntity;
+import br.com.anderson17ads.brazilbank.adapters.outbound.mapper.CustomerMapper;
 import br.com.anderson17ads.brazilbank.domain.customer.Customer;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
 
@@ -20,27 +21,13 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
     public Customer save(Customer customer) {
         JpaCustomerEntity jpaCustomerEntity = new JpaCustomerEntity(customer);
         jpaCustomerRepository.save(jpaCustomerEntity);
-        return new Customer(
-                jpaCustomerEntity.getId(),
-                jpaCustomerEntity.getName(),
-                jpaCustomerEntity.getEmail(),
-                jpaCustomerEntity.getDocument(),
-                jpaCustomerEntity.getDocument(),
-                jpaCustomerEntity.getBirthDate()
-        );
+        return CustomerMapper.toDomain(jpaCustomerEntity);
     }
 
     @Override
     public Optional<Customer> findById(UUID id) {
         Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findById(id);
-        return jpaCustomerEntity.map(entity -> new Customer(
-                entity.getId(),
-                entity.getName(),
-                entity.getEmail(),
-                entity.getDocument(),
-                entity.getPhone(),
-                entity.getBirthDate()
-        ));
+        return jpaCustomerEntity.map(CustomerMapper::toDomain);
     }
 
     @Override
@@ -48,14 +35,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
         Optional<JpaCustomerEntity> jpaCustomerEntity = jpaCustomerRepository.findByEmail(email);
 
         if (jpaCustomerEntity.isPresent()) {
-            return jpaCustomerEntity.map(entity -> new Customer(
-                    entity.getId(),
-                    entity.getName(),
-                    entity.getEmail(),
-                    entity.getDocument(),
-                    entity.getPhone(),
-                    entity.getBirthDate()
-            ));
+            return jpaCustomerEntity.map(CustomerMapper::toDomain);
         }
 
         return Optional.empty();
@@ -76,14 +56,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepository {
         return jpaCustomerRepository
                 .findAll()
                 .stream()
-                .map(entity -> new Customer(
-                        entity.getId(),
-                        entity.getName(),
-                        entity.getEmail(),
-                        entity.getDocument(),
-                        entity.getDocument(),
-                        entity.getBirthDate()
-                ))
+                .map(CustomerMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
