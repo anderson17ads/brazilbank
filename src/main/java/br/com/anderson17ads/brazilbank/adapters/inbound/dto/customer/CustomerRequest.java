@@ -1,6 +1,5 @@
 package br.com.anderson17ads.brazilbank.adapters.inbound.dto.customer;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 

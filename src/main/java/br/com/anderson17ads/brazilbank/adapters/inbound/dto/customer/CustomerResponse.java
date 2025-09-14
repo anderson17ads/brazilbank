@@ -14,13 +14,4 @@ public class CustomerResponse {
     private String document;
     private String phone;
     private LocalDate birthDate;
-
-    public CustomerResponse(Customer customer) {
-        this.id = customer.getId();
-        this.name = customer.getName();
-        this.email = customer.getEmail();
-        this.document = customer.getDocument();
-        this.phone = customer.getPhone();
-        this.birthDate = customer.getBirthDate();
-    }
 }

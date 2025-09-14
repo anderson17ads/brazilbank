@@ -58,7 +58,7 @@ Or using IntelliJ, just run the `BrazilbankApplication` class.
 
 ### Create a customer
 ```http
-POST /customer
+POST /customers
 Content-Type: application/json
 
 {
@@ -71,7 +71,7 @@ Content-Type: application/json
 ```
 ### Create an account
 ```http
-POST /account
+POST /accounts
 Content-Type: application/json
 
 {
@@ -79,6 +79,33 @@ Content-Type: application/json
   "customer_id": "550e8400-e29b-41d4-a716-446655440000",
   "type": "CHECKING"
 }
+```
+### List all customers
+```http
+GET /customers
+Content-Type: application/json
+```
+
+**Response Example**
+```json
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Anderson de Souza",
+    "email": "anderson17ads@hotmail.com",
+    "document": "123456",
+    "phone": "11994048640",
+    "birth_date": "1988-11-22"
+  },
+  {
+    "id": "660e8400-e29b-41d4-a716-446655440111",
+    "name": "Maria Silva",
+    "email": "maria.silva@example.com",
+    "document": "654321",
+    "phone": "11987654321",
+    "birth_date": "1990-05-15"
+  }
+]
 ```
 
 ---

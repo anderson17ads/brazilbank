@@ -2,6 +2,8 @@ package br.com.anderson17ads.brazilbank.infrastructure.config.customer;
 
 import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCase;
 import br.com.anderson17ads.brazilbank.application.usecase.customer.create.CreateCustomerUseCaseAdapter;
+import br.com.anderson17ads.brazilbank.application.usecase.customer.list.ListCustomerUseCaseAdapter;
+import br.com.anderson17ads.brazilbank.application.usecase.customer.list.ListCustomerUserCase;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerFactory;
 import br.com.anderson17ads.brazilbank.domain.customer.CustomerRepository;
 import br.com.anderson17ads.brazilbank.domain.customer.policy.CheckCustomerAlreadyExistsByEmailPolicy;
@@ -21,5 +23,12 @@ public class CustomerUseCaseConfig {
                 customerFactory,
                 checkCustomerAlreadyExistsByEmailPolicy
         );
+    }
+
+    @Bean
+    public ListCustomerUserCase listCustomerUserCase(
+            CustomerRepository customerRepository
+    ) {
+        return new ListCustomerUseCaseAdapter(customerRepository);
     }
 }
